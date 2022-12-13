@@ -49,6 +49,8 @@ void detect_errors(vector<string>& XML_Vector)
         {
             continue;
 
+
+
         }
 
         while (n < XML_Vector[i].length())
