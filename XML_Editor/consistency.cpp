@@ -135,5 +135,80 @@ void detect_errors(vector<string>& XML_Vector)
 
 
 }
+bool check_consistency(vector<string>& XML_Vector) {
+    stack<string> s;
+    string tag;
+    string str;
+    int n = 0;
+
+    for (int i = 0; i < XML_Vector.size(); i++)
+    {
+
+        if ((XML_Vector[i] == "") || (((XML_Vector[i][1] == '?') || (XML_Vector[i][1] == '!')) && XML_Vector[i][0] == '<')
+            || ((XML_Vector[i].find("<") == -1) && (XML_Vector[i].find(">") != -1))
+            || ((XML_Vector[i].find(">") == -1) && (XML_Vector[i].find("<") != -1)))
+        {
+            continue;
+
+        }
+
+        while (n < XML_Vector[i].length())
+        {
+
+            if (n >= XML_Vector[i].length()) {
+                break;
+            }
+            while (XML_Vector[i][n] != '<')
+            {
+                if (n >= XML_Vector[i].length()) {
+                    break;
+                }
+                n++;
+
+            }
+            n++;
+            if (n >= XML_Vector[i].length()) {
+                break;
+            }
+            while (XML_Vector[i][n] != ' ' && XML_Vector[i][n] != '>') {
+                tag += XML_Vector[i][n];
+                if (n >= XML_Vector[i].length()) {
+                    break;
+                }
+                n++;
+            }
+
+            n++;
+            str = tag;
+            tag = "";
+            if (isOpeningTag(str)) {
+                s.push(str);
+            }
+
+            else {
+                if (isXMLTagMatched(s, str))
+                {
+                    s.pop();
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+
+
+        }
+
+        n = 0;
+
+    }
+    if (!s.empty()) {
+        return false;
+    }
+
+    return true;
+
+}
 
 
