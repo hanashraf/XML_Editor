@@ -10,11 +10,13 @@ CONFIG += c++17
 
 SOURCES += \
     consistency.cpp \
+    formating_and_minifying.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     consistency.h \
+    formating_and_minifying.h \
     mainwindow.h
 
 FORMS += \
