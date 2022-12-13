@@ -10,6 +10,7 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+<<<<<<< HEAD
 #include <QtGui/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
@@ -20,6 +21,12 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QToolBar>
+=======
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QStatusBar>
+>>>>>>> 33691b60fb297b066b6c41a654f2e4e42a6f8fed
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -27,6 +34,7 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+<<<<<<< HEAD
     QAction *actionSave_as;
     QWidget *centralwidget;
     QTextBrowser *input;
@@ -46,11 +54,17 @@ public:
     QMenu *menuEdit;
     QStatusBar *statusbar;
     QToolBar *toolBar;
+=======
+    QWidget *centralwidget;
+    QMenuBar *menubar;
+    QStatusBar *statusbar;
+>>>>>>> 33691b60fb297b066b6c41a654f2e4e42a6f8fed
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
+<<<<<<< HEAD
         MainWindow->resize(834, 630);
         QPalette palette;
         QBrush brush(QColor(0, 0, 0, 255));
@@ -251,10 +265,19 @@ public:
         menuFile->setObjectName("menuFile");
         menuEdit = new QMenu(menubar);
         menuEdit->setObjectName("menuEdit");
+=======
+        MainWindow->resize(800, 600);
+        centralwidget = new QWidget(MainWindow);
+        centralwidget->setObjectName("centralwidget");
+        MainWindow->setCentralWidget(centralwidget);
+        menubar = new QMenuBar(MainWindow);
+        menubar->setObjectName("menubar");
+>>>>>>> 33691b60fb297b066b6c41a654f2e4e42a6f8fed
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
+<<<<<<< HEAD
         toolBar = new QToolBar(MainWindow);
         toolBar->setObjectName("toolBar");
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
@@ -262,6 +285,8 @@ public:
         menubar->addAction(menuFile->menuAction());
         menubar->addAction(menuEdit->menuAction());
         toolBar->addAction(actionSave_as);
+=======
+>>>>>>> 33691b60fb297b066b6c41a654f2e4e42a6f8fed
 
         retranslateUi(MainWindow);
 
@@ -271,6 +296,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+<<<<<<< HEAD
         actionSave_as->setText(QCoreApplication::translate("MainWindow", "Save as", nullptr));
         ErrorCheck->setText(QCoreApplication::translate("MainWindow", "Error Check", nullptr));
         ShowErrors->setText(QCoreApplication::translate("MainWindow", "Show Errors", nullptr));
@@ -285,6 +311,8 @@ public:
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
+=======
+>>>>>>> 33691b60fb297b066b6c41a654f2e4e42a6f8fed
     } // retranslateUi
 
 };
