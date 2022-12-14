@@ -71,3 +71,14 @@ string minifying_func(vector<string>& xml)
 	writeFile(file_name, res); // to save the xml lines as line by line in the .txt file 
 	return result; // return the whole xml file as one 
 }
+
+string getTabs(int n)
+{
+    string tabs = ""; // for alignment of the tags
+    string tab = "  "; // equals 4 spaces
+    for (int i = 0; i < n; i++)
+    {
+        tabs += tab;
+    }
+    return tabs;
+}
