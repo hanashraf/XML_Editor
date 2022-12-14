@@ -14,3 +14,21 @@ bool writeFile(string fileName, const vector<string>& xml) {
 	out.close();
 	return true;
 }
+
+bool readFile(string fileName, vector<string>& xml)
+{
+	ifstream in(fileName.c_str());
+	if (!in)
+	{
+		cout << "Cannot open the File : " << fileName << endl;
+		return false;
+	}
+	string str;
+	while (getline(in, str))
+	{
+		if (str.size() > 0)
+			xml.push_back(str);
+	}
+	in.close();
+	return true;
+}
