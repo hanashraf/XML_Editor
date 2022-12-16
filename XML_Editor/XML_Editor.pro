@@ -11,12 +11,16 @@ CONFIG += c++17
 SOURCES += \
     consistency.cpp \
     formating_and_minifying.cpp \
+    huffnode.cpp \
+    hufftree.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     consistency.h \
     formating_and_minifying.h \
+    huffnode.h \
+    hufftree.h \
     mainwindow.h
 
 FORMS += \
