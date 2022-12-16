@@ -146,6 +146,7 @@ public:
         input = new QTextBrowser(centralwidget);
         input->setObjectName(QString::fromUtf8("input"));
         input->setGeometry(QRect(70, 90, 311, 291));
+        input->setReadOnly(false);
         output = new QTextBrowser(centralwidget);
         output->setObjectName(QString::fromUtf8("output"));
         output->setGeometry(QRect(440, 90, 311, 291));
@@ -257,6 +258,7 @@ public:
         MainWindow->setStatusBar(statusbar);
         toolBar = new QToolBar(MainWindow);
         toolBar->setObjectName(QString::fromUtf8("toolBar"));
+        toolBar->setMovable(false);
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
 
         menubar->addAction(menuFile->menuAction());
