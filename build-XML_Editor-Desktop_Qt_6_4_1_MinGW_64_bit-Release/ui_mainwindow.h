@@ -49,7 +49,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1454, 759);
+        MainWindow->resize(1765, 759);
         QPalette palette;
         QBrush brush(QColor(0, 0, 0, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -143,11 +143,11 @@ public:
         centralwidget->setObjectName("centralwidget");
         input = new QTextBrowser(centralwidget);
         input->setObjectName("input");
-        input->setGeometry(QRect(140, 90, 551, 521));
+        input->setGeometry(QRect(0, 70, 761, 661));
         input->setReadOnly(false);
         output = new QTextBrowser(centralwidget);
         output->setObjectName("output");
-        output->setGeometry(QRect(840, 90, 531, 521));
+        output->setGeometry(QRect(770, 70, 891, 641));
         ErrorCheck = new QPushButton(centralwidget);
         ErrorCheck->setObjectName("ErrorCheck");
         ErrorCheck->setGeometry(QRect(130, 40, 93, 29));
@@ -242,7 +242,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1454, 32));
+        menubar->setGeometry(QRect(0, 0, 1765, 32));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName("menuFile");
         menuEdit = new QMenu(menubar);
