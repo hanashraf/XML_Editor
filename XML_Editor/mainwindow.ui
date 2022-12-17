@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1349</width>
+    <width>1454</width>
     <height>759</height>
    </rect>
   </property>
@@ -459,7 +459,7 @@
    <widget class="QTextBrowser" name="input">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>140</x>
       <y>90</y>
       <width>551</width>
       <height>521</height>
@@ -472,7 +472,7 @@
    <widget class="QTextBrowser" name="output">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>840</x>
       <y>90</y>
       <width>531</width>
       <height>521</height>
@@ -482,7 +482,7 @@
    <widget class="QPushButton" name="ErrorCheck">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>130</x>
       <y>40</y>
       <width>93</width>
       <height>29</height>
@@ -937,7 +937,7 @@
    <widget class="QPushButton" name="ShowErrors">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>280</x>
       <y>40</y>
       <width>93</width>
       <height>29</height>
@@ -950,7 +950,7 @@
    <widget class="QPushButton" name="FixErrors">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>430</x>
       <y>40</y>
       <width>93</width>
       <height>29</height>
@@ -963,7 +963,7 @@
    <widget class="QPushButton" name="Prettify">
     <property name="geometry">
      <rect>
-      <x>480</x>
+      <x>580</x>
       <y>40</y>
       <width>93</width>
       <height>29</height>
@@ -976,7 +976,7 @@
    <widget class="QPushButton" name="Compress">
     <property name="geometry">
      <rect>
-      <x>880</x>
+      <x>1010</x>
       <y>40</y>
       <width>93</width>
       <height>29</height>
@@ -989,7 +989,7 @@
    <widget class="QPushButton" name="Minify">
     <property name="geometry">
      <rect>
-      <x>740</x>
+      <x>860</x>
       <y>40</y>
       <width>93</width>
       <height>29</height>
@@ -1002,7 +1002,7 @@
    <widget class="QPushButton" name="Decompress">
     <property name="geometry">
      <rect>
-      <x>1020</x>
+      <x>1150</x>
       <y>40</y>
       <width>93</width>
       <height>29</height>
@@ -1015,7 +1015,7 @@
    <widget class="QPushButton" name="DrawGraph">
     <property name="geometry">
      <rect>
-      <x>1160</x>
+      <x>1290</x>
       <y>40</y>
       <width>93</width>
       <height>29</height>
@@ -1028,7 +1028,7 @@
    <widget class="QPushButton" name="XMLtoJSON">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>720</x>
       <y>40</y>
       <width>93</width>
       <height>29</height>
@@ -1044,7 +1044,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1349</width>
+     <width>1454</width>
      <height>32</height>
     </rect>
    </property>
