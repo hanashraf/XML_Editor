@@ -12,7 +12,6 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -40,7 +39,6 @@ public:
     QPushButton *Decompress;
     QPushButton *DrawGraph;
     QPushButton *XMLtoJSON;
-    QCheckBox *Darkmode;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuEdit;
@@ -51,7 +49,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(834, 630);
+        MainWindow->resize(1454, 759);
         QPalette palette;
         QBrush brush(QColor(0, 0, 0, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -145,14 +143,14 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         input = new QTextBrowser(centralwidget);
         input->setObjectName(QString::fromUtf8("input"));
-        input->setGeometry(QRect(70, 90, 311, 291));
+        input->setGeometry(QRect(140, 90, 551, 521));
         input->setReadOnly(false);
         output = new QTextBrowser(centralwidget);
         output->setObjectName(QString::fromUtf8("output"));
-        output->setGeometry(QRect(440, 90, 311, 291));
+        output->setGeometry(QRect(840, 90, 531, 521));
         ErrorCheck = new QPushButton(centralwidget);
         ErrorCheck->setObjectName(QString::fromUtf8("ErrorCheck"));
-        ErrorCheck->setGeometry(QRect(10, 40, 93, 29));
+        ErrorCheck->setGeometry(QRect(130, 40, 93, 29));
         QPalette palette1;
         palette1.setBrush(QPalette::Active, QPalette::WindowText, brush);
         QBrush brush14(QColor(235, 240, 186, 255));
@@ -219,35 +217,32 @@ public:
         ErrorCheck->setPalette(palette1);
         ShowErrors = new QPushButton(centralwidget);
         ShowErrors->setObjectName(QString::fromUtf8("ShowErrors"));
-        ShowErrors->setGeometry(QRect(100, 40, 93, 29));
+        ShowErrors->setGeometry(QRect(280, 40, 93, 29));
         FixErrors = new QPushButton(centralwidget);
         FixErrors->setObjectName(QString::fromUtf8("FixErrors"));
-        FixErrors->setGeometry(QRect(190, 40, 93, 29));
+        FixErrors->setGeometry(QRect(430, 40, 93, 29));
         Prettify = new QPushButton(centralwidget);
         Prettify->setObjectName(QString::fromUtf8("Prettify"));
-        Prettify->setGeometry(QRect(280, 40, 93, 29));
+        Prettify->setGeometry(QRect(580, 40, 93, 29));
         Compress = new QPushButton(centralwidget);
         Compress->setObjectName(QString::fromUtf8("Compress"));
-        Compress->setGeometry(QRect(550, 40, 93, 29));
+        Compress->setGeometry(QRect(1010, 40, 93, 29));
         Minify = new QPushButton(centralwidget);
         Minify->setObjectName(QString::fromUtf8("Minify"));
-        Minify->setGeometry(QRect(460, 40, 93, 29));
+        Minify->setGeometry(QRect(860, 40, 93, 29));
         Decompress = new QPushButton(centralwidget);
         Decompress->setObjectName(QString::fromUtf8("Decompress"));
-        Decompress->setGeometry(QRect(640, 40, 93, 29));
+        Decompress->setGeometry(QRect(1150, 40, 93, 29));
         DrawGraph = new QPushButton(centralwidget);
         DrawGraph->setObjectName(QString::fromUtf8("DrawGraph"));
-        DrawGraph->setGeometry(QRect(730, 40, 93, 29));
+        DrawGraph->setGeometry(QRect(1290, 40, 93, 29));
         XMLtoJSON = new QPushButton(centralwidget);
         XMLtoJSON->setObjectName(QString::fromUtf8("XMLtoJSON"));
-        XMLtoJSON->setGeometry(QRect(370, 40, 93, 29));
-        Darkmode = new QCheckBox(centralwidget);
-        Darkmode->setObjectName(QString::fromUtf8("Darkmode"));
-        Darkmode->setGeometry(QRect(360, 420, 101, 24));
+        XMLtoJSON->setGeometry(QRect(720, 40, 93, 29));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 834, 32));
+        menubar->setGeometry(QRect(0, 0, 1454, 32));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuEdit = new QMenu(menubar);
@@ -283,7 +278,6 @@ public:
         Decompress->setText(QCoreApplication::translate("MainWindow", "Decompress", nullptr));
         DrawGraph->setText(QCoreApplication::translate("MainWindow", "Draw Graph", nullptr));
         XMLtoJSON->setText(QCoreApplication::translate("MainWindow", "XML to JSON", nullptr));
-        Darkmode->setText(QCoreApplication::translate("MainWindow", "Dark mode", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
