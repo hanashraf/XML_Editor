@@ -1,11 +1,13 @@
-#ifndef HUFFTREE_H
-#define HUFFTREE_H
+#ifndef HUFFTREE_H_
+#define HUFFTREE_H_
+#include "huffnode.h"
 
-
-class huffTree
+class HuffTree
 {
+private:
 public:
-    huffTree();
+    HuffNode *array_of_nodes[128];
+    void createNodeArray();
+    virtual void createHuffmanTree() = 0;
 };
-
-#endif // HUFFTREE_H
+#endif // HUFFTREE_H_
