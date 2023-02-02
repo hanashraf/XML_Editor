@@ -94,3 +94,41 @@ vector<string> xml_attribute_to_json(string s, int index)
     }
     return v1;
 }
+
+int is_duplicate(node *child)
+{
+    node *parent=new node;
+    parent = child->previous;
+    int num=0;
+
+    list<node*>::iterator i;
+
+    if(parent != nullptr)
+    {
+        for(i=parent->next.begin(); i!=parent->next.end(); i++)
+        {
+            if(*i == child)
+            {
+                i++;
+                while(i!=parent->next.end())
+                {
+
+                    if(child->tag == (*i)->tag)
+                    {
+                        num++;
+                        (*i)->duplicate =1;
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                    i++;
+                }
+                break;
+            }
+
+        }
+    }
+    return num;
+}
