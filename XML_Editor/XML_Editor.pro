@@ -13,6 +13,7 @@ SOURCES += \
     compressiondecoding.cpp \
     consistency.cpp \
     formating_and_minifying.cpp \
+    general_functions.cpp \
     huffnode.cpp \
     hufftree.cpp \
     main.cpp \
@@ -23,6 +24,7 @@ HEADERS += \
     compressiondecoding.h \
     consistency.h \
     formating_and_minifying.h \
+    general_functions.h \
     huffnode.h \
     hufftree.h \
     mainwindow.h
