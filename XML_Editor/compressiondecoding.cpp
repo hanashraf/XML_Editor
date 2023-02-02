@@ -43,3 +43,31 @@ void compressiondecoding::buildTree(string &path, char ascii_code)
     }
     current->setId(ascii_code); // set the original id of the character
 }
+void compressiondecoding::createHuffmanTree()
+{
+    in_file.open(input_file_name, ios::in | ios::binary);       // opening the input file
+    unsigned char nodesNumber;
+    in_file.read(reinterpret_cast<char *>(&nodesNumber), 1);    // reading the number of nodes in the huffman tree
+    root_node = new HuffNode;
+
+    for (int i = 0; i < nodesNumber; i++)
+    {
+        char id_code;                                           // holding the original character
+        unsigned char b_code[16];                               // obtaining the binary code
+        in_file.read(&id_code, 1);                              // reading character
+        in_file.read(reinterpret_cast<char *>(b_code), 16);     // reading the code of the character
+        string s_code = "";
+        for (int i = 0; i < 16; i++)
+        {                                                       // obtaining 128-bit binary string
+            s_code += decimalToBinary(b_code[i]);
+        }
+        int k = 0;
+        while (s_code[k] == '0')
+        {                                                       // deleting the added zeroes to get the real huffman code
+            k++;
+        }
+        s_code = s_code.substr(k + 1);                         // getting the real huffman code
+        buildTree(s_code, id_code);                            // calling build tree function
+    }
+    in_file.close();                                          // closing the input file
+}
