@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "formating_and_minifying.h"
-//#include "ui_mainwindow.h"
+#include "ui_mainwindow.h"
 #include "consistency.h"
 #include <qfile.h>
 #include <QMessageBox>
