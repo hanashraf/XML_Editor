@@ -53,3 +53,35 @@ void CompressionCoding ::createPriorityQueue()
         }
     }
 }
+
+void CompressionCoding::traverse(HuffNode *node, string code)
+{
+    if (node->getLeft() == NULL && node->getRight() == NULL)
+    {
+        node->setCode(code);
+    }
+    else
+    {
+        traverse(node->getLeft(), code + '0');
+        traverse(node->getRight(), code + '1');
+    }
+}
+
+void CompressionCoding::createHuffmanTree()
+{
+    priority_queue<HuffNode *, vector<HuffNode *>, compare> temp_queue(P_Q);
+    while (temp_queue.size() > 1)
+    {
+        root_node = new HuffNode;
+        root_node->setFrequency(0);
+        root_node->setLeft(temp_queue.top());
+        root_node->setFrequency((temp_queue.top()->getFrequency()) + root_node->getFrequency());
+        temp_queue.pop();
+        root_node->setRight(temp_queue.top());
+        root_node->setFrequency((temp_queue.top()->getFrequency()) + root_node->getFrequency());
+        temp_queue.pop();
+        temp_queue.push(root_node);
+    }
+
+    traverse(root_node, "");
+}
