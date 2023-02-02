@@ -85,3 +85,25 @@ void CompressionCoding::createHuffmanTree()
 
     traverse(root_node, "");
 }
+
+void CompressionCoding::setFixedStringForm(string &output_string)
+{
+    priority_queue<HuffNode *, vector<HuffNode *>, compare> temp(P_Q);
+    string str = "";
+    while (!temp.empty())
+    {
+        HuffNode *current = temp.top();
+        output_string += current->getId();                // append to output string Id of the top element of priority queue
+        str.assign(127 - current->getCode().size(), '0'); // set the codes with a fixed 128-bit string form[000����1 + real code]
+        str += '1';                                       //'1' indication of the start of huffman code
+        str.append(current->getCode());
+        output_string += (char)binaryToDecimal(str.substr(0, 8)); // add decimal value
+        for (int i = 0; i < 15; i++)
+        { // cut into 8-bit binary codes that can convert into saving char needed for binary file
+
+            str = str.substr(8);
+            output_string += (char)binaryToDecimal(str.substr(0, 8));
+        }
+        temp.pop();
+    }
+}
