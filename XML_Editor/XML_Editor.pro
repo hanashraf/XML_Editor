@@ -18,7 +18,8 @@ SOURCES += \
     hufftree.cpp \
     json.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    network_analysis.cpp
 
 HEADERS += \
     compressioncoding.h \
@@ -29,7 +30,8 @@ HEADERS += \
     huffnode.h \
     hufftree.h \
     json.h \
-    mainwindow.h
+    mainwindow.h \
+    network_analysis.h
 
 FORMS += \
     mainwindow.ui
