@@ -16,6 +16,7 @@ SOURCES += \
     general_functions.cpp \
     huffnode.cpp \
     hufftree.cpp \
+    json.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -27,6 +28,7 @@ HEADERS += \
     general_functions.h \
     huffnode.h \
     hufftree.h \
+    json.h \
     mainwindow.h
 
 FORMS += \
