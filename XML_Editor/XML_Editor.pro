@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     compressioncoding.cpp \
+    compressiondecoding.cpp \
     consistency.cpp \
     formating_and_minifying.cpp \
     huffnode.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 
 HEADERS += \
     compressioncoding.h \
+    compressiondecoding.h \
     consistency.h \
     formating_and_minifying.h \
     huffnode.h \
