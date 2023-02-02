@@ -107,3 +107,29 @@ void CompressionCoding::setFixedStringForm(string &output_string)
         temp.pop();
     }
 }
+
+void CompressionCoding::appendCodeOfEachChar(string &output_string)
+{
+    string str = "";
+    char id;
+    in_file.get(id);       // get data from file
+    while (!in_file.eof()) // loop till end of the file
+    {
+
+        str += array_of_nodes[id]->getCode(); // append code of each char in the file
+        while (str.size() > 8)
+        { // cut into 8-bit binary codes that can convert into saving char needed for binary file
+            output_string += (char)binaryToDecimal(str.substr(0, 8));
+            str = str.substr(8);
+        }
+        in_file.get(id);
+    }
+
+    int count = 8 - str.size();
+    if (str.size() < 8)
+    {
+        str.append(count, '0'); // add '0' to the last few codes to create the last byte of text
+    }
+    output_string += (char)binaryToDecimal(str); // save number of 'count' at last
+    output_string += (char)count;
+}
