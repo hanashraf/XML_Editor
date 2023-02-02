@@ -1,6 +1,23 @@
-#include "compressioncoding.h"
+#include "compressionCoding.h"
+#include <string>
+#include <iostream>
+using namespace std;
 
-compressionCoding::compressionCoding()
+CompressionCoding::CompressionCoding(string input_file_name, string output_file_name)
 {
+    this->input_file_name = input_file_name;
+    this->output_file_name = output_file_name;
+    createNodeArray();
+    createPriorityQueue();
+    createHuffmanTree();
+    in_file.open(input_file_name, ios::in);
+    out_file.open(output_file_name, ios::out | ios::binary);
+    string output_string = "";
+    output_string += (char)P_Q.size();
+    setFixedStringForm(output_string);
+    appendCodeOfEachChar(output_string);
+    out_file.write(output_string.c_str(), output_string.size());
+    in_file.close();
+    out_file.close();
 
 }
