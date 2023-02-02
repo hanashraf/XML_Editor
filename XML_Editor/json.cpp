@@ -52,3 +52,45 @@ int get_string_index(string s) //this function searching for attribute if found 
     }
     return 0;
 }
+
+vector<string> xml_attribute_to_json(string s, int index)
+{
+    int i=index;
+    string option;
+    string value;
+    vector<string>v1;
+
+    while(i<(int)s.length())
+    {
+        if(s[i] == '=')
+        {
+            v1.push_back(option);
+            option.clear();//
+            value.clear();
+        }
+        else if(s[i] == ' ' || s[i] == '>')
+        {
+            v1.push_back(value); //"price1":"1",
+            option.clear();
+            value.clear();
+        }
+        else
+        {
+            if(i == (int)s.length()-2 && s[i] =='/')
+            {
+                //do nothing
+            }
+
+            else
+            {
+                option += s[i];
+                value += s[i];
+            }
+
+        }
+
+        i++;
+
+    }
+    return v1;
+}
