@@ -16,4 +16,30 @@ string compressiondecoding::decimalToBinary(int number)
     binaryNumber.insert(0, zeroes);
     return binaryNumber;
 }
-
+void compressiondecoding::buildTree(string &path, char ascii_code)
+{
+    HuffNode *current = root_node;
+    for (int i = 0; i < (int)path.size(); i++)
+    {
+        if (path[i] == '0')
+        {
+            if (current->getLeft() == NULL) // create a new node if it is the first left node
+            {
+                current->setLeft(new HuffNode());
+            }
+            current = current->getLeft(); // pointer will point to the next left node
+        }
+        else if (path[i] == '1')
+        {
+            if (current->getRight() == NULL) // create a new node if it is the first right node
+            {
+                current->setRight(new HuffNode());
+            }
+            current = current->getRight(); // pointer will point to the next right node
+        }
+        else
+        {
+        }
+    }
+    current->setId(ascii_code); // set the original id of the character
+}
