@@ -21,3 +21,12 @@ CompressionCoding::CompressionCoding(string input_file_name, string output_file_
     out_file.close();
 
 }
+int CompressionCoding::binaryToDecimal(string number)
+{
+    int result = 0;
+    for (int i = 0; i < number.size(); i++)
+    {
+        result = result * 2 + number[i] - '0';
+    }
+    return result;
+}
