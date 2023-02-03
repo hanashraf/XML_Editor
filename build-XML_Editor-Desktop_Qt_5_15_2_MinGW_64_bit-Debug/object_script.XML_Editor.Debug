@@ -5,6 +5,8 @@ debug/formating_and_minifying.o
 debug/general_functions.o
 debug/huffnode.o
 debug/hufftree.o
+debug/json.o
 debug/main.o
 debug/mainwindow.o
+debug/network_analysis.o
 debug/moc_mainwindow.o

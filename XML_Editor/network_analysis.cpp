@@ -1,7 +1,8 @@
 #include "network_analysis.h"
 #include <iostream>
 #include <math.h>
-#include <opencv2/core.hpp>
+#include "D:\XML_Editor\release\install\include\opencv2\core\cvdef.h"
+#include "D:\XML_Editor\release\install\include\opencv2\core.hpp"
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/calib3d.hpp>
@@ -14,6 +15,7 @@
 #include <opencv2/photo.hpp>
 #include <opencv2/stitching.hpp>
 #define M_PI 2 * acos(0.0)
+
 using namespace cv;
 using namespace std;
 #define MAX_NODE_NUMBER 100
