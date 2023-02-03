@@ -5,8 +5,6 @@ release/formating_and_minifying.o
 release/general_functions.o
 release/huffnode.o
 release/hufftree.o
-release/json.o
 release/main.o
 release/mainwindow.o
-release/network_analysis.o
 release/moc_mainwindow.o
