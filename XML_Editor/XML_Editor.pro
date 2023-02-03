@@ -59,3 +59,22 @@ LIBS += D:\Data_Structures\XML_Editor\release\bin\libopencv_stitching460.dll
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    icons/bug.png \
+    icons/check.png \
+    icons/compress.png \
+    icons/copy.png \
+    icons/cut.png \
+    icons/exit.png \
+    icons/indent.png \
+    icons/json.png \
+    icons/minify.png \
+    icons/new-document.png \
+    icons/open.png \
+    icons/paste.png \
+    icons/redo.png \
+    icons/repeair.png \
+    icons/save-as-512.png \
+    icons/save.png \
+    icons/undo.png
