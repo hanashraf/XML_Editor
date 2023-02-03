@@ -1,6 +1,6 @@
 #ifndef COMPRESSIONCODING_H_
 #define COMPRESSIONCODING_H_
-#include "huffTree.h"
+#include "hufftree.h"
 #include <fstream>
 #include <string>
 #include <vector>

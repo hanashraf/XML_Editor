@@ -1,6 +1,5 @@
 #include "general_functions.h"
 
-
 bool writeFile(string fileName, const vector<string>& xml) {
     fstream out;
     out.open(fileName, ios::out);
@@ -18,6 +17,7 @@ bool writeFile(string fileName, const vector<string>& xml) {
     out.close();
     return true;
 }
+
 bool readFile(string fileName, vector<string>& xml)
 {
     ifstream in(fileName.c_str());
@@ -35,6 +35,7 @@ bool readFile(string fileName, vector<string>& xml)
     in.close();
     return true;
 }
+
 string remove_spaces(string line){
     int j = 0;
     //remove spaces from the start of the line

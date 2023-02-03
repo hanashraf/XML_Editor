@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 #include <QDesktopServices>
 #include <QImage>
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -238,7 +237,7 @@ void MainWindow::on_Prettify_clicked()
 
     vector<string> xml;
     readFile("input.xml", xml);
-    prettifying_func(xml);
+    prettifying_func(xml,"pretify.txt");
     QFile x("pretify.txt");
     if(!x.open(QFile::ReadOnly | QFile::Text))
     {
@@ -274,7 +273,7 @@ void MainWindow::on_Minify_clicked()
 
     vector<string> xml;
     readFile("input.xml", xml);
-    minifying_func(xml);
+    minifying_func(xml,"minify.txt");
     QFile x("minify.txt");
     if(!x.open(QFile::ReadOnly | QFile::Text))
     {
@@ -437,4 +436,3 @@ if(valid){
 }else{
 }
 }
-

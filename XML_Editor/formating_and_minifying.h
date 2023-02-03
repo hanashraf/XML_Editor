@@ -2,26 +2,17 @@
 // Created by ahmeddareff on 12/14/22.
 //
 
-#ifndef FORMATING_AND_MINIFYING_H
-#define FORMATING_AND_MINIFYING_H
-
-#pragma once
+#ifndef FORMATTING_MINIFYING_H
+#define FORMATTING_MINIFYING_H
 #include <iostream>
 #include <vector>
 #include <string>
-#include <fstream>
 #include <stdlib.h>
 #include <stack>
 #include <general_functions.h>
 using namespace std;
-string minifying_func(vector<string>& xml);
+string minifying_func(vector<string>& xml,string file_name);
 string getTabs(int n);
-vector<string> prettifying_func(vector<string>& xml);
+vector<string> prettifying_func(vector<string>& xml,string file_name);
 
-class Formating_and_Minifying
-{
-public:
-    Formating_and_Minifying();
-};
-
-#endif // FORMATING_AND_MINIFYING_H
+#endif // FORMATTING_MINIFYING_H
