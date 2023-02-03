@@ -19,7 +19,8 @@ SOURCES += \
     json.cpp \
     main.cpp \
     mainwindow.cpp \
-    network_analysis.cpp
+    network_analysis.cpp \
+    xmltomat.cpp
 
 HEADERS += \
     compressioncoding.h \
@@ -31,7 +32,8 @@ HEADERS += \
     hufftree.h \
     json.h \
     mainwindow.h \
-    network_analysis.h
+    network_analysis.h \
+    xmltomat.h
 
 FORMS += \
     mainwindow.ui

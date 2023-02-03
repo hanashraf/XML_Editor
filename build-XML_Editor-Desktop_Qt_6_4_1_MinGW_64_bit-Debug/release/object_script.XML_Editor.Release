@@ -9,4 +9,5 @@ release/json.o
 release/main.o
 release/mainwindow.o
 release/network_analysis.o
+release/xmltomat.o
 release/moc_mainwindow.o
