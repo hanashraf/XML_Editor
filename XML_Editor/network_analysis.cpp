@@ -1,4 +1,4 @@
-/*#include "network_analysis.h"
+#include "network_analysis.h"
 #include <iostream>
 #include <math.h>
 #include <opencv2/core.hpp>
@@ -171,4 +171,4 @@ GraphAnalysis::GraphAnalysis(int arr[100][100], int number_of_nodes, string outp
 
     return;
 }
-*/
+

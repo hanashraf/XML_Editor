@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QDesktopServices>
 #include <QImage>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
