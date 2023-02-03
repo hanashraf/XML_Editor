@@ -1,0 +1,55 @@
+# Target labels
+ Main
+ opencv_highgui
+ Module
+# Source files and their labels
+D:/OpenCV/opencv/sources/modules/highgui/include/opencv2/highgui.hpp
+ Main
+ opencv_highgui
+ Module
+D:/OpenCV/opencv/sources/modules/highgui/include/opencv2/highgui/highgui.hpp
+ Main
+ opencv_highgui
+ Module
+D:/OpenCV/opencv/sources/modules/highgui/include/opencv2/highgui/highgui_c.h
+ Main
+ opencv_highgui
+ Module
+D:/OpenCV/opencv/sources/modules/highgui/src/backend.cpp
+ Main
+ opencv_highgui
+ Module
+D:/OpenCV/opencv/sources/modules/highgui/src/window.cpp
+ Main
+ opencv_highgui
+ Module
+D:/OpenCV/opencv/sources/modules/highgui/src/roiSelector.cpp
+ Main
+ opencv_highgui
+ Module
+D:/OpenCV/opencv/sources/modules/highgui/src/window_QT.cpp
+ Main
+ opencv_highgui
+ Module
+D:/OpenCV/opencv/sources/modules/highgui/src/window_QT.h
+ Main
+ opencv_highgui
+ Module
+D:/OpenCV/opencv/release/modules/highgui/src/moc_window_QT.cpp
+ Main
+ opencv_highgui
+ Module
+D:/OpenCV/opencv/release/modules/highgui/qrc_window_QT.cpp
+ Main
+ opencv_highgui
+ Module
+D:/OpenCV/opencv/sources/modules/highgui/src/precomp.hpp
+ Main
+ opencv_highgui
+ Module
+D:/OpenCV/opencv/release/cvconfig.h
+D:/OpenCV/opencv/release/opencv2/opencv_modules.hpp
+D:/OpenCV/opencv/release/modules/highgui/vs_version.rc
+D:/OpenCV/opencv/release/modules/highgui/opencv_highgui_main.cpp
+D:/OpenCV/opencv/release/modules/highgui/src/moc_window_QT.cpp.rule
+D:/OpenCV/opencv/sources/modules/highgui/src/window_QT.qrc

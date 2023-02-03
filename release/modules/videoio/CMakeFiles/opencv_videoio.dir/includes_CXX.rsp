@@ -1,0 +1,1 @@
+-ID:/OpenCV/opencv/sources/modules/videoio/include -ID:/OpenCV/opencv/release/modules/videoio -ID:/OpenCV/opencv/sources/modules/core/include -ID:/OpenCV/opencv/sources/modules/imgproc/include -ID:/OpenCV/opencv/sources/modules/imgcodecs/include -isystem D:/OpenCV/opencv/release

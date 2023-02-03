@@ -1,0 +1,15 @@
+-ID:/OpenCV/opencv/release
+-ID:/OpenCV/opencv/sources/modules/highgui
+-ID:/OpenCV/opencv/release/modules/highgui
+-D_WIN32_WINNT=0x0601
+-D_USE_MATH_DEFINES
+-D__STDC_CONSTANT_MACROS
+-D__STDC_LIMIT_MACROS
+-D__STDC_FORMAT_MACROS
+-DHAVE_WEBP
+-DHAVE_QT
+-DHAVE_QT6
+-DWIN32
+-o
+D:/OpenCV/opencv/release/modules/highgui/src/moc_window_QT.cpp
+D:/OpenCV/opencv/sources/modules/highgui/src/window_QT.h

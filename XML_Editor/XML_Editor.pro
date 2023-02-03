@@ -36,6 +36,23 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
+
+INCLUDEPATH += D:\Data_Structures\XML_Editor\release\install\include
+
+
+LIBS += D:\Data_Structures\XML_Editor\release\bin\libopencv_core460.dll
+LIBS += D:\Data_Structures\XML_Editor\release\bin\libopencv_highgui460.dll
+LIBS += D:\Data_Structures\XML_Editor\release\bin\libopencv_imgproc460.dll
+LIBS += D:\Data_Structures\XML_Editor\release\bin\libopencv_calib3d460.dll
+LIBS += D:\Data_Structures\XML_Editor\release\bin\libopencv_features2d460.dll
+LIBS += D:\Data_Structures\XML_Editor\release\bin\libopencv_flann460.dll
+LIBS += D:\Data_Structures\XML_Editor\release\bin\libopencv_gapi460.dll
+LIBS += D:\Data_Structures\XML_Editor\release\bin\libopencv_imgcodecs460.dll
+LIBS += D:\Data_Structures\XML_Editor\release\bin\libopencv_ml460.dll
+LIBS += D:\Data_Structures\XML_Editor\release\bin\libopencv_objdetect460.dll
+LIBS += D:\Data_Structures\XML_Editor\release\bin\libopencv_photo460.dll
+LIBS += D:\Data_Structures\XML_Editor\release\bin\libopencv_stitching460.dll
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

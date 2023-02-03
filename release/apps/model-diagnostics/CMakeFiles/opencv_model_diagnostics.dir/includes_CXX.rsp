@@ -1,0 +1,1 @@
+-ID:/OpenCV/opencv/sources/modules/core/include -ID:/OpenCV/opencv/sources/modules/dnn/include -ID:/OpenCV/opencv/sources/modules/imgproc/include -I"D:/OpenCV/opencv/sources/apps/model-diagnostics/PRIVATE" -ID:/OpenCV/opencv/sources/include/opencv -isystem D:/OpenCV/opencv/release

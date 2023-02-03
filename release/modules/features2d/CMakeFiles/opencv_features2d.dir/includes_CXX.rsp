@@ -1,0 +1,1 @@
+-ID:/OpenCV/opencv/sources/modules/features2d/include -ID:/OpenCV/opencv/release/modules/features2d -ID:/OpenCV/opencv/sources/modules/core/include -ID:/OpenCV/opencv/sources/modules/flann/include -ID:/OpenCV/opencv/sources/modules/imgproc/include -isystem D:/OpenCV/opencv/release
