@@ -2,7 +2,22 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QFile>
+#include <QFileDialog>
+#include <QTextStream>
+#include <QMessageBox>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <fstream>
+#include <xmltomat.h>
+#include <network_analysis.h>
+#include "general_functions.h"
+#include <consistency.h>
+#include "formating_and_minifying.h"
+#include "json.h"
+#include "compressioncoding.h"
+#include "compressiondecoding.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -16,25 +31,48 @@ public:
     ~MainWindow();
 
 private slots:
+    void on_actionOpe_triggered();
+
+    void on_actionNew_triggered();
+
+    void on_actionExit_triggered();
+
+    void on_actionSaveAs_triggered();
+
+    void on_actionCopy_triggered();
+
+    void on_actionPaste_triggered();
+
+    void on_actionUndo_triggered();
+
+    void on_actionRedo_triggered();
+
+    void on_actionCut_triggered();
+
     void on_ErrorCheck_clicked();
 
-    void on_ShowErrors_clicked();
+    void on_ErrorFix_clicked();
 
-    void on_FixErrors_clicked();
+    void on_XMLtoJson_clicked();
 
     void on_Prettify_clicked();
-
-    void on_XMLtoJSON_clicked();
 
     void on_Minify_clicked();
 
     void on_Compress_clicked();
 
+    void on_checkBox_clicked();
+
     void on_Decompress_clicked();
 
-    void on_DrawGraph_clicked();
+    void on_actionSave_2_triggered();
+
+    void on_ShowErrors_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;
+    QString currentFile="";
 };
 #endif // MAINWINDOW_H
