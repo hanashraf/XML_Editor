@@ -37,7 +37,7 @@ FORMS += \
     mainwindow.ui
 
 
-INCLUDEPATH += D:\Data_Structures\XML_Editor\release
+INCLUDEPATH += D:\Data_Structures\XML_Editor\release\install\include
 
 
 LIBS += D:\Data_Structures\XML_Editor\release\bin\libopencv_core460.dll
