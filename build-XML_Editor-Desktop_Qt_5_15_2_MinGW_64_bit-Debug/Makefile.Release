@@ -16,10 +16,10 @@ CXX           = g++
 DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DMINGW_HAS_SECURE_API=1 -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -fno-keep-inline-dllexport -O2 -Wall -Wextra -Wextra $(DEFINES)
 CXXFLAGS      = -fno-keep-inline-dllexport -O2 -std=gnu++1z -Wall -Wextra -Wextra -fexceptions -mthreads $(DEFINES)
-INCPATH       = -I../XML_Editor -I. -IC:/Qt/5.15.2/mingw81_64/include -IC:/Qt/5.15.2/mingw81_64/include/QtWidgets -IC:/Qt/5.15.2/mingw81_64/include/QtGui -IC:/Qt/5.15.2/mingw81_64/include/QtANGLE -IC:/Qt/5.15.2/mingw81_64/include/QtCore -Irelease -I. -I/include -IC:/Qt/5.15.2/mingw81_64/mkspecs/win32-g++ 
+INCPATH       = -I../XML_Editor -I. -I../release/install/include -IC:/Qt/5.15.2/mingw81_64/include -IC:/Qt/5.15.2/mingw81_64/include/QtWidgets -IC:/Qt/5.15.2/mingw81_64/include/QtGui -IC:/Qt/5.15.2/mingw81_64/include/QtANGLE -IC:/Qt/5.15.2/mingw81_64/include/QtCore -Irelease -I. -I/include -IC:/Qt/5.15.2/mingw81_64/mkspecs/win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        C:/Qt/5.15.2/mingw81_64/lib/libQt5Widgets.a C:/Qt/5.15.2/mingw81_64/lib/libQt5Gui.a C:/Qt/5.15.2/mingw81_64/lib/libQt5Core.a  -lmingw32 C:/Qt/5.15.2/mingw81_64/lib/libqtmain.a -LC:/openssl/lib -LC:/Utils/my_sql/mysql-5.7.25-winx64/lib -LC:/Utils/postgresql/pgsql/lib -lshell32 
+LIBS        =        D:/XML_Editor/release/bin/libopencv_core460.dll D:/XML_Editor/release/bin/libopencv_highgui460.dll D:/XML_Editor/release/bin/libopencv_imgproc460.dll D:/XML_Editor/release/bin/libopencv_calib3d460.dll D:/XML_Editor/release/bin/libopencv_features2d460.dll D:/XML_Editor/release/bin/libopencv_flann460.dll D:/XML_Editor/release/bin/libopencv_gapi460.dll D:/XML_Editor/release/bin/libopencv_ml460.dll D:/XML_Editor/release/bin/libopencv_objdetect460.dll D:/XML_Editor/release/bin/libopencv_photo460.dll D:/XML_Editor/release/bin/libopencv_stitching460.dll D:/XML_Editor/release/bin/libopencv_imgcodecs460.dll D:/XML_Editor/release/bin/libopencv_core455.dll D:/XML_Editor/release/bin/libopencv_highgui455.dll D:/XML_Editor/opencv/release/bin/libopencv_imgcodecs455.dll D:/XML_Editor/opencv/release/bin/libopencv_imgproc455.dll D:/XML_Editor/opencv/release/bin/libopencv_calib3d455.dll C:/Qt/5.15.2/mingw81_64/lib/libQt5Widgets.a C:/Qt/5.15.2/mingw81_64/lib/libQt5Gui.a C:/Qt/5.15.2/mingw81_64/lib/libQt5Core.a  -lmingw32 C:/Qt/5.15.2/mingw81_64/lib/libqtmain.a -LC:/openssl/lib -LC:/Utils/my_sql/mysql-5.7.25-winx64/lib -LC:/Utils/postgresql/pgsql/lib -lshell32 
 QMAKE         = C:/Qt/5.15.2/mingw81_64/bin/qmake.exe
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -57,8 +57,10 @@ SOURCES       = ../XML_Editor/compressioncoding.cpp \
 		../XML_Editor/general_functions.cpp \
 		../XML_Editor/huffnode.cpp \
 		../XML_Editor/hufftree.cpp \
+		../XML_Editor/json.cpp \
 		../XML_Editor/main.cpp \
-		../XML_Editor/mainwindow.cpp release/moc_mainwindow.cpp
+		../XML_Editor/mainwindow.cpp \
+		../XML_Editor/network_analysis.cpp release/moc_mainwindow.cpp
 OBJECTS       = release/compressioncoding.o \
 		release/compressiondecoding.o \
 		release/consistency.o \
@@ -66,8 +68,10 @@ OBJECTS       = release/compressioncoding.o \
 		release/general_functions.o \
 		release/huffnode.o \
 		release/hufftree.o \
+		release/json.o \
 		release/main.o \
 		release/mainwindow.o \
+		release/network_analysis.o \
 		release/moc_mainwindow.o
 
 DIST          =  ../XML_Editor/compressioncoding.h \
@@ -77,15 +81,19 @@ DIST          =  ../XML_Editor/compressioncoding.h \
 		../XML_Editor/general_functions.h \
 		../XML_Editor/huffnode.h \
 		../XML_Editor/hufftree.h \
-		../XML_Editor/mainwindow.h ../XML_Editor/compressioncoding.cpp \
+		../XML_Editor/json.h \
+		../XML_Editor/mainwindow.h \
+		../XML_Editor/network_analysis.h ../XML_Editor/compressioncoding.cpp \
 		../XML_Editor/compressiondecoding.cpp \
 		../XML_Editor/consistency.cpp \
 		../XML_Editor/formating_and_minifying.cpp \
 		../XML_Editor/general_functions.cpp \
 		../XML_Editor/huffnode.cpp \
 		../XML_Editor/hufftree.cpp \
+		../XML_Editor/json.cpp \
 		../XML_Editor/main.cpp \
-		../XML_Editor/mainwindow.cpp
+		../XML_Editor/mainwindow.cpp \
+		../XML_Editor/network_analysis.cpp
 QMAKE_TARGET  = XML_Editor
 DESTDIR        = release/ #avoid trailing-slash linebreak
 TARGET         = XML_Editor.exe
@@ -105,10 +113,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) XML_Editor.zip $(SOURCES) $(DIST) ../XML_Editor/XML_Editor.pro C:/Qt/5.15.2/mingw81_64/mkspecs/features/spec_pre.prf C:/Qt/5.15.2/mingw81_64/mkspecs/qdevice.pri C:/Qt/5.15.2/mingw81_64/mkspecs/features/device_config.prf C:/Qt/5.15.2/mingw81_64/mkspecs/common/sanitize.conf C:/Qt/5.15.2/mingw81_64/mkspecs/common/gcc-base.conf C:/Qt/5.15.2/mingw81_64/mkspecs/common/g++-base.conf C:/Qt/5.15.2/mingw81_64/mkspecs/common/angle.conf C:/Qt/5.15.2/mingw81_64/mkspecs/features/win32/windows_vulkan_sdk.prf C:/Qt/5.15.2/mingw81_64/mkspecs/common/windows-vulkan.conf C:/Qt/5.15.2/mingw81_64/mkspecs/common/g++-win32.conf C:/Qt/5.15.2/mingw81_64/mkspecs/common/windows-desktop.conf C:/Qt/5.15.2/mingw81_64/mkspecs/qconfig.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3danimation.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3danimation_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dcore.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dcore_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dextras.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dextras_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dinput.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dinput_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dlogic.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dlogic_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquick.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquick_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickanimation.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickextras.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickextras_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickinput.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickinput_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickrender.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickrender_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickscene2d.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3drender.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3drender_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_accessibility_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_axbase.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_axbase_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_axcontainer.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_axcontainer_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_axserver.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_axserver_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_bluetooth.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_bluetooth_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_bootstrap_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_concurrent.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_concurrent_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_core.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_core_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_dbus.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_dbus_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_designer.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_designer_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_designercomponents_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_edid_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_egl_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_fb_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_gamepad.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_gamepad_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_gui.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_gui_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_help.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_help_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_location.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_location_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_multimedia.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_multimedia_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_multimediawidgets.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_network.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_network_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_nfc.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_nfc_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_opengl.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_opengl_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_openglextensions.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_openglextensions_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_packetprotocol_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_positioning.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_positioning_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_positioningquick.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_positioningquick_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_printsupport.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_printsupport_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qml.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qml_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qmldebug_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qmldevtools_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qmlmodels.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qmlmodels_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qmltest.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qmltest_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qmlworkerscript.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qmlworkerscript_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quick.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quick_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quickcontrols2.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quickparticles_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quickshapes_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quicktemplates2.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quickwidgets.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quickwidgets_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_remoteobjects.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_remoteobjects_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_repparser.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_repparser_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_scxml.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_scxml_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_sensors.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_sensors_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_serialbus.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_serialbus_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_serialport.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_serialport_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_sql.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_sql_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_svg.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_svg_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_testlib.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_testlib_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_texttospeech.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_texttospeech_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_theme_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_uiplugin.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_uitools.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_uitools_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_vulkan_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_webchannel.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_webchannel_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_websockets.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_websockets_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_widgets.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_widgets_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_windowsuiautomation_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_winextras.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_winextras_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_xml.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_xml_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_xmlpatterns.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_zlib_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/features/qt_functions.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/qt_config.prf C:/Qt/5.15.2/mingw81_64/mkspecs/win32-g++/qmake.conf C:/Qt/5.15.2/mingw81_64/mkspecs/features/spec_post.prf .qmake.stash C:/Qt/5.15.2/mingw81_64/mkspecs/features/exclusive_builds.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/toolchain.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/default_pre.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/win32/default_pre.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/resolve_config.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/exclusive_builds_post.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/default_post.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/build_pass.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/qml_debug.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/precompile_header.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/warn_on.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/qt.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/resources_functions.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/resources.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/moc.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/win32/opengl.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/uic.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/qmake_use.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/file_copies.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/win32/windows.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/testcase_targets.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/exceptions.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/yacc.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/lex.prf ../XML_Editor/XML_Editor.pro C:/Qt/5.15.2/mingw81_64/lib/Qt5Widgets.prl C:/Qt/5.15.2/mingw81_64/lib/Qt5Gui.prl C:/Qt/5.15.2/mingw81_64/lib/Qt5Core.prl C:/Qt/5.15.2/mingw81_64/lib/qtmain.prl    C:/Qt/5.15.2/mingw81_64/mkspecs/features/data/dummy.cpp ../XML_Editor/compressioncoding.h ../XML_Editor/compressiondecoding.h ../XML_Editor/consistency.h ../XML_Editor/formating_and_minifying.h ../XML_Editor/general_functions.h ../XML_Editor/huffnode.h ../XML_Editor/hufftree.h ../XML_Editor/mainwindow.h  ../XML_Editor/compressioncoding.cpp ../XML_Editor/compressiondecoding.cpp ../XML_Editor/consistency.cpp ../XML_Editor/formating_and_minifying.cpp ../XML_Editor/general_functions.cpp ../XML_Editor/huffnode.cpp ../XML_Editor/hufftree.cpp ../XML_Editor/main.cpp ../XML_Editor/mainwindow.cpp ../XML_Editor/mainwindow.ui    
+	$(ZIP) XML_Editor.zip $(SOURCES) $(DIST) ../XML_Editor/XML_Editor.pro C:/Qt/5.15.2/mingw81_64/mkspecs/features/spec_pre.prf C:/Qt/5.15.2/mingw81_64/mkspecs/qdevice.pri C:/Qt/5.15.2/mingw81_64/mkspecs/features/device_config.prf C:/Qt/5.15.2/mingw81_64/mkspecs/common/sanitize.conf C:/Qt/5.15.2/mingw81_64/mkspecs/common/gcc-base.conf C:/Qt/5.15.2/mingw81_64/mkspecs/common/g++-base.conf C:/Qt/5.15.2/mingw81_64/mkspecs/common/angle.conf C:/Qt/5.15.2/mingw81_64/mkspecs/features/win32/windows_vulkan_sdk.prf C:/Qt/5.15.2/mingw81_64/mkspecs/common/windows-vulkan.conf C:/Qt/5.15.2/mingw81_64/mkspecs/common/g++-win32.conf C:/Qt/5.15.2/mingw81_64/mkspecs/common/windows-desktop.conf C:/Qt/5.15.2/mingw81_64/mkspecs/qconfig.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3danimation.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3danimation_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dcore.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dcore_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dextras.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dextras_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dinput.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dinput_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dlogic.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dlogic_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquick.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquick_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickanimation.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickextras.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickextras_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickinput.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickinput_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickrender.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickrender_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickscene2d.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3drender.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_3drender_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_accessibility_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_axbase.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_axbase_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_axcontainer.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_axcontainer_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_axserver.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_axserver_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_bluetooth.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_bluetooth_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_bootstrap_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_concurrent.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_concurrent_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_core.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_core_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_dbus.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_dbus_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_designer.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_designer_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_designercomponents_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_edid_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_egl_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_fb_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_gamepad.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_gamepad_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_gui.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_gui_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_help.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_help_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_location.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_location_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_multimedia.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_multimedia_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_multimediawidgets.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_network.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_network_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_nfc.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_nfc_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_opengl.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_opengl_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_openglextensions.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_openglextensions_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_packetprotocol_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_positioning.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_positioning_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_positioningquick.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_positioningquick_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_printsupport.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_printsupport_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qml.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qml_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qmldebug_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qmldevtools_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qmlmodels.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qmlmodels_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qmltest.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qmltest_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qmlworkerscript.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qmlworkerscript_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quick.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quick_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quickcontrols2.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quickparticles_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quickshapes_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quicktemplates2.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quickwidgets.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_quickwidgets_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_remoteobjects.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_remoteobjects_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_repparser.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_repparser_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_scxml.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_scxml_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_sensors.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_sensors_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_serialbus.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_serialbus_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_serialport.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_serialport_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_sql.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_sql_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_svg.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_svg_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_testlib.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_testlib_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_texttospeech.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_texttospeech_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_theme_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_uiplugin.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_uitools.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_uitools_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_vulkan_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_webchannel.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_webchannel_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_websockets.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_websockets_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_widgets.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_widgets_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_windowsuiautomation_support_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_winextras.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_winextras_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_xml.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_xml_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_xmlpatterns.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/modules/qt_lib_zlib_private.pri C:/Qt/5.15.2/mingw81_64/mkspecs/features/qt_functions.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/qt_config.prf C:/Qt/5.15.2/mingw81_64/mkspecs/win32-g++/qmake.conf C:/Qt/5.15.2/mingw81_64/mkspecs/features/spec_post.prf .qmake.stash C:/Qt/5.15.2/mingw81_64/mkspecs/features/exclusive_builds.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/toolchain.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/default_pre.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/win32/default_pre.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/resolve_config.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/exclusive_builds_post.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/default_post.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/build_pass.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/qml_debug.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/precompile_header.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/warn_on.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/qt.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/resources_functions.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/resources.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/moc.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/win32/opengl.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/uic.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/qmake_use.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/file_copies.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/win32/windows.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/testcase_targets.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/exceptions.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/yacc.prf C:/Qt/5.15.2/mingw81_64/mkspecs/features/lex.prf ../XML_Editor/XML_Editor.pro C:/Qt/5.15.2/mingw81_64/lib/Qt5Widgets.prl C:/Qt/5.15.2/mingw81_64/lib/Qt5Gui.prl C:/Qt/5.15.2/mingw81_64/lib/Qt5Core.prl C:/Qt/5.15.2/mingw81_64/lib/qtmain.prl    C:/Qt/5.15.2/mingw81_64/mkspecs/features/data/dummy.cpp ../XML_Editor/compressioncoding.h ../XML_Editor/compressiondecoding.h ../XML_Editor/consistency.h ../XML_Editor/formating_and_minifying.h ../XML_Editor/general_functions.h ../XML_Editor/huffnode.h ../XML_Editor/hufftree.h ../XML_Editor/json.h ../XML_Editor/mainwindow.h ../XML_Editor/network_analysis.h  ../XML_Editor/compressioncoding.cpp ../XML_Editor/compressiondecoding.cpp ../XML_Editor/consistency.cpp ../XML_Editor/formating_and_minifying.cpp ../XML_Editor/general_functions.cpp ../XML_Editor/huffnode.cpp ../XML_Editor/hufftree.cpp ../XML_Editor/json.cpp ../XML_Editor/main.cpp ../XML_Editor/mainwindow.cpp ../XML_Editor/network_analysis.cpp ../XML_Editor/mainwindow.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) release/compressioncoding.o release/compressiondecoding.o release/consistency.o release/formating_and_minifying.o release/general_functions.o release/huffnode.o release/hufftree.o release/main.o release/mainwindow.o release/moc_mainwindow.o
+	-$(DEL_FILE) release/compressioncoding.o release/compressiondecoding.o release/consistency.o release/formating_and_minifying.o release/general_functions.o release/huffnode.o release/hufftree.o release/json.o release/main.o release/mainwindow.o release/network_analysis.o release/moc_mainwindow.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -245,7 +253,7 @@ release/moc_mainwindow.cpp: ../XML_Editor/mainwindow.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtGui/qicon.h \
 		release/moc_predefs.h \
 		C:/Qt/5.15.2/mingw81_64/bin/moc.exe
-	'C:\Qt\5.15.2\mingw81_64\bin\moc.exe' $(DEFINES) --include D:/XML_Editor/build-XML_Editor-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/5.15.2/mingw81_64/mkspecs/win32-g++ -ID:/XML_Editor/XML_Editor -IC:/Qt/5.15.2/mingw81_64/include -IC:/Qt/5.15.2/mingw81_64/include/QtWidgets -IC:/Qt/5.15.2/mingw81_64/include/QtGui -IC:/Qt/5.15.2/mingw81_64/include/QtANGLE -IC:/Qt/5.15.2/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ../XML_Editor/mainwindow.h -o release/moc_mainwindow.cpp
+	'C:\Qt\5.15.2\mingw81_64\bin\moc.exe' $(DEFINES) --include D:/XML_Editor/build-XML_Editor-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/5.15.2/mingw81_64/mkspecs/win32-g++ -ID:/XML_Editor/XML_Editor -ID:/XML_Editor/release/install/include -IC:/Qt/5.15.2/mingw81_64/include -IC:/Qt/5.15.2/mingw81_64/include/QtWidgets -IC:/Qt/5.15.2/mingw81_64/include/QtGui -IC:/Qt/5.15.2/mingw81_64/include/QtANGLE -IC:/Qt/5.15.2/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ../XML_Editor/mainwindow.h -o release/moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -296,6 +304,9 @@ release/huffnode.o: ../XML_Editor/huffnode.cpp ../XML_Editor/huffnode.h
 release/hufftree.o: ../XML_Editor/hufftree.cpp ../XML_Editor/hufftree.h \
 		../XML_Editor/huffnode.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/hufftree.o ../XML_Editor/hufftree.cpp
+
+release/json.o: ../XML_Editor/json.cpp ../XML_Editor/json.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/json.o ../XML_Editor/json.cpp
 
 release/main.o: ../XML_Editor/main.cpp ../XML_Editor/mainwindow.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QMainWindow \
@@ -523,12 +534,181 @@ release/mainwindow.o: ../XML_Editor/mainwindow.cpp ../XML_Editor/mainwindow.h \
 		../XML_Editor/formating_and_minifying.h \
 		../XML_Editor/general_functions.h \
 		ui_mainwindow.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/QVariant \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QAction \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qaction.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qactiongroup.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QApplication \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qapplication.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtCore/qeventloop.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtGui/qguiapplication.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtGui/qinputmethod.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QMenu \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qmenu.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QMenuBar \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QPushButton \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QStatusBar \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QTextBrowser \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtextbrowser.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtextedit.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qframe.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtGui/qtextdocument.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtGui/qtextoption.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtGui/qtextcursor.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtGui/qtextformat.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtGui/qpen.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QToolBar \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtoolbar.h \
+		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QWidget \
 		../XML_Editor/consistency.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QMessageBox \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qmessagebox.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qdialog.h \
 		C:/Qt/5.15.2/mingw81_64/include/QtCore/QTextStream
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/mainwindow.o ../XML_Editor/mainwindow.cpp
+
+release/network_analysis.o: ../XML_Editor/network_analysis.cpp ../XML_Editor/network_analysis.h \
+		../release/install/include/opencv2/core.hpp \
+		../release/install/include/opencv2/core/cvdef.h \
+		../release/install/include/opencv2/core/version.hpp \
+		../release/install/include/opencv2/core/hal/interface.h \
+		../release/install/include/opencv2/core/cv_cpu_dispatch.h \
+		../release/install/include/opencv2/core/cv_cpu_helper.h \
+		../release/install/include/opencv2/core/hal/msa_macros.h \
+		../release/install/include/opencv2/core/fast_math.hpp \
+		../release/install/include/opencv2/core/base.hpp \
+		../release/install/include/opencv2/opencv_modules.hpp \
+		../release/install/include/opencv2/core/cvstd.hpp \
+		../release/install/include/opencv2/core/cvstd_wrapper.hpp \
+		../release/install/include/opencv2/core/neon_utils.hpp \
+		../release/install/include/opencv2/core/vsx_utils.hpp \
+		../release/install/include/opencv2/core/check.hpp \
+		../release/install/include/opencv2/core/traits.hpp \
+		../release/install/include/opencv2/core/matx.hpp \
+		../release/install/include/opencv2/core/saturate.hpp \
+		../release/install/include/opencv2/core/types.hpp \
+		../release/install/include/opencv2/core/mat.hpp \
+		../release/install/include/opencv2/core/bufferpool.hpp \
+		../release/install/include/opencv2/core/mat.inl.hpp \
+		../release/install/include/opencv2/core/persistence.hpp \
+		../release/install/include/opencv2/core/operations.hpp \
+		../release/install/include/opencv2/core/cvstd.inl.hpp \
+		../release/install/include/opencv2/core/utility.hpp \
+		../release/install/include/opencv2/core/utils/instrumentation.hpp \
+		../release/install/include/opencv2/core/utils/tls.hpp \
+		../release/install/include/opencv2/core/optim.hpp \
+		../release/install/include/opencv2/core/ovx.hpp \
+		../release/install/include/opencv2/highgui.hpp \
+		../release/install/include/opencv2/imgcodecs.hpp \
+		../release/install/include/opencv2/videoio.hpp \
+		../release/install/include/opencv2/imgproc.hpp \
+		../release/install/include/opencv2/imgproc/segmentation.hpp \
+		../release/install/include/opencv2/calib3d.hpp \
+		../release/install/include/opencv2/features2d.hpp \
+		../release/install/include/opencv2/flann/miniflann.hpp \
+		../release/install/include/opencv2/flann/defines.h \
+		../release/install/include/opencv2/flann/config.h \
+		../release/install/include/opencv2/core/affine.hpp \
+		../release/install/include/opencv2/flann.hpp \
+		../release/install/include/opencv2/flann/flann_base.hpp \
+		../release/install/include/opencv2/flann/general.h \
+		../release/install/include/opencv2/flann/matrix.h \
+		../release/install/include/opencv2/flann/params.h \
+		../release/install/include/opencv2/flann/any.h \
+		../release/install/include/opencv2/flann/saving.h \
+		../release/install/include/opencv2/flann/nn_index.h \
+		../release/install/include/opencv2/flann/result_set.h \
+		../release/install/include/opencv2/flann/all_indices.h \
+		../release/install/include/opencv2/flann/kdtree_index.h \
+		../release/install/include/opencv2/flann/dynamic_bitset.h \
+		../release/install/include/opencv2/flann/dist.h \
+		../release/install/include/opencv2/flann/heap.h \
+		../release/install/include/opencv2/flann/allocator.h \
+		../release/install/include/opencv2/flann/random.h \
+		../release/install/include/opencv2/flann/kdtree_single_index.h \
+		../release/install/include/opencv2/flann/kmeans_index.h \
+		../release/install/include/opencv2/flann/logger.h \
+		../release/install/include/opencv2/flann/composite_index.h \
+		../release/install/include/opencv2/flann/linear_index.h \
+		../release/install/include/opencv2/flann/hierarchical_clustering_index.h \
+		../release/install/include/opencv2/flann/lsh_index.h \
+		../release/install/include/opencv2/flann/lsh_table.h \
+		../release/install/include/opencv2/flann/autotuned_index.h \
+		../release/install/include/opencv2/flann/ground_truth.h \
+		../release/install/include/opencv2/flann/index_testing.h \
+		../release/install/include/opencv2/flann/timer.h \
+		../release/install/include/opencv2/flann/sampling.h \
+		../release/install/include/opencv2/gapi.hpp \
+		../release/install/include/opencv2/gapi/gmat.hpp \
+		../release/install/include/opencv2/gapi/opencv_includes.hpp \
+		../release/install/include/opencv2/gapi/own/cvdefs.hpp \
+		../release/install/include/opencv2/gapi/own/types.hpp \
+		../release/install/include/opencv2/gapi/own/scalar.hpp \
+		../release/install/include/opencv2/gapi/own/exports.hpp \
+		../release/install/include/opencv2/gapi/own/mat.hpp \
+		../release/install/include/opencv2/gapi/own/saturate.hpp \
+		../release/install/include/opencv2/gapi/own/assert.hpp \
+		../release/install/include/opencv2/gapi/util/compiler_hints.hpp \
+		../release/install/include/opencv2/gapi/util/throw.hpp \
+		../release/install/include/opencv2/gapi/util/type_traits.hpp \
+		../release/install/include/opencv2/gapi/gcommon.hpp \
+		../release/install/include/opencv2/gapi/util/any.hpp \
+		../release/install/include/opencv2/gapi/util/optional.hpp \
+		../release/install/include/opencv2/gapi/util/variant.hpp \
+		../release/install/include/opencv2/gapi/util/util.hpp \
+		../release/install/include/opencv2/gapi/render/render_types.hpp \
+		../release/install/include/opencv2/gapi/s11n/base.hpp \
+		../release/install/include/opencv2/gapi/garray.hpp \
+		../release/install/include/opencv2/gapi/gscalar.hpp \
+		../release/install/include/opencv2/gapi/gopaque.hpp \
+		../release/install/include/opencv2/gapi/gframe.hpp \
+		../release/install/include/opencv2/gapi/gcomputation.hpp \
+		../release/install/include/opencv2/gapi/gproto.hpp \
+		../release/install/include/opencv2/gapi/garg.hpp \
+		../release/install/include/opencv2/gapi/media.hpp \
+		../release/install/include/opencv2/gapi/gtype_traits.hpp \
+		../release/install/include/opencv2/gapi/streaming/source.hpp \
+		../release/install/include/opencv2/gapi/gmetaarg.hpp \
+		../release/install/include/opencv2/gapi/own/convert.hpp \
+		../release/install/include/opencv2/gapi/rmat.hpp \
+		../release/install/include/opencv2/gapi/gcompiled.hpp \
+		../release/install/include/opencv2/gapi/gstreaming.hpp \
+		../release/install/include/opencv2/gapi/gtyped.hpp \
+		../release/install/include/opencv2/gapi/gkernel.hpp \
+		../release/install/include/opencv2/gapi/gcall.hpp \
+		../release/install/include/opencv2/gapi/gtransform.hpp \
+		../release/install/include/opencv2/gapi/operators.hpp \
+		../release/install/include/opencv2/gapi/streaming/desync.hpp \
+		../release/install/include/opencv2/gapi/streaming/format.hpp \
+		../release/install/include/opencv2/ml.hpp \
+		../release/install/include/opencv2/ml/ml.inl.hpp \
+		../release/install/include/opencv2/objdetect.hpp \
+		../release/install/include/opencv2/objdetect/detection_based_tracker.hpp \
+		../release/install/include/opencv2/objdetect/face.hpp \
+		../release/install/include/opencv2/photo.hpp \
+		../release/install/include/opencv2/stitching.hpp \
+		../release/install/include/opencv2/stitching/warpers.hpp \
+		../release/install/include/opencv2/stitching/detail/warpers.hpp \
+		../release/install/include/opencv2/core/cuda.hpp \
+		../release/install/include/opencv2/core/cuda_types.hpp \
+		../release/install/include/opencv2/core/cuda.inl.hpp \
+		../release/install/include/opencv2/stitching/detail/warpers_inl.hpp \
+		../release/install/include/opencv2/stitching/detail/matchers.hpp \
+		../release/install/include/opencv2/stitching/detail/motion_estimators.hpp \
+		../release/install/include/opencv2/stitching/detail/util.hpp \
+		../release/install/include/opencv2/stitching/detail/util_inl.hpp \
+		../release/install/include/opencv2/stitching/detail/camera.hpp \
+		../release/install/include/opencv2/stitching/detail/exposure_compensate.hpp \
+		../release/install/include/opencv2/stitching/detail/seam_finders.hpp \
+		../release/install/include/opencv2/stitching/detail/blenders.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/network_analysis.o ../XML_Editor/network_analysis.cpp
 
 release/moc_mainwindow.o: release/moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/moc_mainwindow.o release/moc_mainwindow.cpp
